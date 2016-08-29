@@ -1,0 +1,27 @@
+{
+  "name": "meg",
+  "authors": [
+    "Stas Pyshevski <stasbamiza3@gmail.com>"
+  ],
+  "description": "meg test bower",
+  "main": "meg",
+  "keywords": [
+    "bower",
+    "test"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "social-likes": "^3.1.1",
+    "iCheck": "jquery-icheck#^1.0.2",
+    "fotorama": "^4.6.4"
+  }
+}

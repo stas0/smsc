@@ -1,0 +1,59 @@
+sudo: true
+services:
+  - docker
+
+addons:
+apt:
+  packages:
+    - oracle-java8-installer
+    - maven
+
+cache:
+  docker: true
+  directories:
+    - modules/admin/node_modules
+    - modules/admin/typings
+    - .autoconf
+    - $HOME/.m2
+
+language: java
+
+jdk:
+  - oraclejdk8
+
+node_js:
+  - "6"
+
+install:
+  - nvm install 6
+  - nvm use 6
+#  - export CHROME_BIN=chromium-browser
+#  - export DISPLAY=:99.0
+#  - "sh -e /etc/init.d/xvfb start"
+#  - sleep 3 # give xvfb some time to start
+#  - npm run start:hmr&
+#  - sleep 10
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push smscio/smsc;
+    fi
+
+script:
+  - ./bin/deploy.sh
+ 
+#after_success:
+#  - mvn clean cobertura:cobertura coveralls:report
+
+notifications:
+  email:
+    recipients:
+      - info@smsc.io
+      - dimakuba124@gmail.com
+    on_success: always
+    on_failure: always
+
+addons:
+  sauce_connect: true
+  
